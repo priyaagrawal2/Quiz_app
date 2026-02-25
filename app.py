@@ -9,14 +9,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.config.from_object(Config)
 
-# -----------------------
-# DATABASE INIT
-# -----------------------
 db.init_app(app)
 
-# -----------------------
-# LOGIN MANAGER
-# -----------------------
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
@@ -25,22 +19,14 @@ login_manager.login_view = "login"
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# -----------------------
-# CREATE TABLES
-# -----------------------
 with app.app_context():
     db.create_all()
 
-# -----------------------
-# HOME
-# -----------------------
 @app.route("/")
 def home():
     return redirect(url_for("login"))
 
-# -----------------------
-# REGISTER
-# -----------------------
+
 @app.route("/register", methods=["GET","POST"])
 def register():
     form = RegisterForm()
@@ -62,9 +48,7 @@ def register():
 
     return render_template("register.html", form=form)
 
-# -----------------------
-# LOGIN
-# -----------------------
+
 @app.route("/login", methods=["GET","POST"])
 def login():
     form = LoginForm()
@@ -80,9 +64,6 @@ def login():
 
     return render_template("login.html", form=form)
 
-# -----------------------
-# DASHBOARD
-# -----------------------
 @app.route("/dashboard")
 @login_required
 def dashboard():
