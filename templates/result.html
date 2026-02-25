@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Quiz Result</h2>
+
+<h4>Your Score: {{ score }} / 10</h4>
+
+<a href="{{ url_for('dashboard') }}" class="btn btn-primary">
+    Back to Dashboard
+</a>
+
+{% endblock %}

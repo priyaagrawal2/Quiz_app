@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+
+    <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <p class="auth-sub">Login to continue your quiz journey</p>
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="input-group">
+                {{ form.username.label }}
+                {{ form.username(class="input-field") }}
+            </div>
+
+            <div class="input-group">
+                {{ form.password.label }}
+                {{ form.password(class="input-field") }}
+            </div>
+
+            {{ form.submit(class="auth-btn") }}
+        </form>
+
+        <p class="auth-link">
+            Don't have an account?
+            <a href="{{ url_for('register') }}">Register</a>
+        </p>
+    </div>
+
+</div>
+{% endblock %}

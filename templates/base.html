@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Quiz App{% endblock %}</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    {% if current_user.is_authenticated %}
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="{{ url_for('dashboard') }}" class="logo">QuizMaster</a>
+        </div>
+
+        <div class="nav-right">
+            <span class="user-name">Hi, {{ current_user.username }}</span>
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+    {% endif %}
+
+    <!-- MAIN CONTENT -->
+    <div class="main-container">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>
