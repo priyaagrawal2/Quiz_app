@@ -6,9 +6,6 @@ with app.app_context():
 
     print("Seeding database...")
 
-    # -------------------------
-    # CREATE QUIZZES
-    # -------------------------
     math_quiz = Quiz.query.filter_by(title="Basic Maths").first()
     if not math_quiz:
         math_quiz = Quiz(title="Basic Maths", description="10 basic maths questions")
@@ -21,15 +18,9 @@ with app.app_context():
 
     db.session.commit()
 
-    # -------------------------
-    # REMOVE OLD QUESTIONS
-    # -------------------------
     Question.query.delete()
     db.session.commit()
 
-    # -------------------------
-    # MATH QUESTIONS
-    # -------------------------
     math_questions = [
         ("What is 5 + 3?", "6", "7", "8", "9", "8"),
         ("What is 10 - 4?", "5", "6", "7", "8", "6"),
@@ -54,9 +45,6 @@ with app.app_context():
             correct_option=q[5]
         ))
 
-    # -------------------------
-    # ENGLISH QUESTIONS
-    # -------------------------
     english_questions = [
         ("She ___ to school every day.", "go", "goes", "gone", "going", "goes"),
         ("They ___ playing football now.", "is", "are", "was", "be", "are"),
@@ -83,4 +71,4 @@ with app.app_context():
 
     db.session.commit()
 
-    print("✅ Database seeded successfully!")
+    print(" Database seeded successfully!")
